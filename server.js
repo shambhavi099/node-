@@ -11,14 +11,12 @@ app.use(cors());
 
 const User = require("./models/User");
 
-// ✅ Root route
+// Root route
 app.get("/", (req, res) => {
   res.send("Node backend running ✅");
 });
 
-// ================= CRUD =================
-
-// ✅ CREATE
+//  CREATE
 app.post("/users", async (req, res) => {
   try {
     const user = new User(req.body);
@@ -30,7 +28,7 @@ app.post("/users", async (req, res) => {
   }
 });
 
-// ✅ READ (ONLY ONE ROUTE)
+//  READ (ONLY ONE ROUTE)
 app.get("/users", async (req, res) => {
   try {
     console.log("GET /users hit");
@@ -42,7 +40,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-// ✅ DELETE
+// DELETE
 app.delete("/users/:email", async (req, res) => {
   try {
     await User.deleteOne({ email: req.params.email });
@@ -53,8 +51,7 @@ app.delete("/users/:email", async (req, res) => {
   }
 });
 
-// ================= DB + SERVER =================
-
+//
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGO_URI)
